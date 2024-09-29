@@ -1,0 +1,53 @@
+From 09dabbc52a7871d835ed148ce465f37221da1874 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Thu, 19 Sep 2024 12:19:02 +0800
+Subject: [PATCH] install
+
+---
+ Crypto-Tracker.desktop | 11 +++++++++++
+ Crypto-Tracker.pro     | 10 +++++++---
+ 2 files changed, 18 insertions(+), 3 deletions(-)
+ create mode 100644 Crypto-Tracker.desktop
+
+diff --git a/Crypto-Tracker.desktop b/Crypto-Tracker.desktop
+new file mode 100644
+index 0000000..435f293
+--- /dev/null
++++ b/Crypto-Tracker.desktop
+@@ -0,0 +1,11 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=Crypto-Tracker
++Name=Crypto-Tracker
++Name[zh_CN]=Crypto-Tracker
++Icon=Chainlink
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=Crypto-Tracker
++Version=1.0
+\ No newline at end of file
+diff --git a/Crypto-Tracker.pro b/Crypto-Tracker.pro
+index 5655958..e7bfdff 100644
+--- a/Crypto-Tracker.pro
++++ b/Crypto-Tracker.pro
+@@ -33,9 +33,13 @@ FORMS += \
+     mainwindow.ui
+ 
+ # Default rules for deployment.
+-qnx: target.path = /tmp/$${TARGET}/bin
+-else: unix:!android: target.path = /opt/$${TARGET}/bin
+-!isEmpty(target.path): INSTALLS += target
++target.path = $$PREFIX/bin
++desktop.files = Crypto-Tracker.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons/hicolor/apps/
++icons.files = images/Chainlink.png
++
++INSTALLS += target desktop icons
+ 
+ RESOURCES += \
+     data.qrc \
+-- 
+2.43.4
+

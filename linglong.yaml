@@ -1,0 +1,28 @@
+version: "1"
+
+package:
+  id: io.github.Crypto-Tracker
+  name: Crypto-Tracker
+  version: 0.0.0.1
+  kind: app
+  description: |
+    App to check info about different cryptocurrencies
+
+command:
+  - /opt/apps/io.github.Crypto-Tracker/files/bin/Crypto-Tracker
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/kn0w0n3/Crypto-Tracker.git
+    version: master
+    commit: 5b819ea53ffd951f2ebb2b0e5e2f7fdd8532f274
+
+build: |
+  cd /project/linglong/sources/Crypto-Tracker.git
+  git apply ../../../0001-install.patch
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make -j$(nproc)
+  make install
